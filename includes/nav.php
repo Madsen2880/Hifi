@@ -33,7 +33,7 @@
 				if ($result->num_rows > 0) {
 					// output data of each row
 					while($row = $result->fetch_assoc()) {
-                    echo '<li><a href="index.php?p=products&id='.$row['categorie_id'].'">'.utf8_encode($row['categorie_name']).'</a></li>';
+                    echo '<li><a href="admin.php?p=products&id='.$row['categorie_id'].'">'.utf8_encode($row['categorie_name']).'</a></li>';
 					}
 				}
                 ?>

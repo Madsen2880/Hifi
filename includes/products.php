@@ -3,7 +3,7 @@
 		$id = $_GET['id'];
 	} else {
 		//404
-		header('Location: index.php?p=home');
+		header('Location: admin.php?p=home');
 	}
 ?>
 
