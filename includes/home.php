@@ -1,8 +1,6 @@
 
 
 
-
-
 <aside id="myCarousel" class="container carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -58,57 +56,43 @@
         </section>
     </article>
     <hr class="featurette-divider">
-    <article>
-        <section class="row">
-            <div class="col-xs-18 col-sm-6 col-md-3">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/500x300" alt="">
-                    <div class="caption">
-                        <h4>Overskrift</h4>
-                        <p class="text-muted">3/7 2014 10:22</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
+    
+
+                    <?php
+                        $sql = "SELECT news.news_id, news.news_heading, news.news_text, news.news_created, pictures.picture_name FROM news
+                                LEFT JOIN pictures ON news.fk_newspic_id = pictures.picture_id
+                                WHERE news.news_id = news_id";
+
+                        $result = $conn->query($sql);
+
+                        if ($result->num_rows > 0) {
+                            // output data of each row
+                            while($row = $result->fetch_assoc()){
+				
+                
+                   echo'<article>
+                    <section class="row">
+                        <div class="col-xs-18 col-sm-6 col-md-3">
+                        <div class="thumbnail">
+                        <img src="prod_image/'.$row['picture_name'].'" alt="">
+                            <div class="caption">
+                            <h4>'.$row['news_heading'].'</h4>
+                            <p class="text-muted">'.$row['news_created'].'</p>
+                            <p>';
+                            echo strlen($row['news_text']) >= 150 ? substr($row['news_text'], 0, 150) : $row['news_text'];
+                            echo '</p>
                         <p><a href="#" class="btn btn-default btn-xs" role="button">Læs mere</a></p>
                     </div>
                 </div>
-            </div>
-            <div class="col-xs-18 col-sm-6 col-md-3">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/500x300" alt="">
-                    <div class="caption">
-                        <h4>Overskrift</h4>
-                        <p class="text-muted">3/7 2014 10:22</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
-                        <p><a href="#" class="btn btn-default btn-xs" role="button">Læs mere</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-18 col-sm-6 col-md-3">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/500x300" alt="">
-                    <div class="caption">
-                        <h4>Overskrift</h4>
-                        <p class="text-muted">3/7 2014 10:22</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
-                        <p><a href="#" class="btn btn-default btn-xs" role="button">Læs mere</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-18 col-sm-6 col-md-3">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/500x300" alt="">
-                    <div class="caption">
-                        <h4>Overskrift</h4>
-                        <p class="text-muted">3/7 2014 10:22</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
-                        <p><a href="#" class="btn btn-default btn-xs" role="button">Læs mere</a></p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </article>
-    <hr class="featurette-divider">
+            </div>';
+				
+				}
+			}
+		?>
+</section>
+</article>
+
     <footer>
         <p>© Hi-fi Netbutikken
         </p>
     </footer>
-</section>
