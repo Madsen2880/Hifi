@@ -43,17 +43,17 @@ if ($_POST) {
             echo "Sorry, there was an error uploading your file.";
         }
     }
-    $conn->query("INSERT INTO pictures (picture_name) VALUES ($fileName)");
+    $conn->query("INSERT INTO pictures (picture_name) VALUES ('$fileName')");
 
     $stmt = $conn->prepare("INSERT INTO produkter
                           (product_name, product_details, product_price, fk_categorie_id, fk_model_id, fk_picture_id)
-                          VALUES (?, ?, ?, ?, ?, ?(SELECT MAX(picture_id) FROM pictures))");
-    $stmt->bind_param('ssdiis', $_POST['product_name'],
+                          VALUES (?, ?, ?, ?, ?, (SELECT MAX(picture_id) FROM pictures))");
+
+    $stmt->bind_param('ssdii', $_POST['product_name'],
                                 $_POST['product_details'],
                                 $_POST['product_price'],
                                 $_POST['categories'],
-                                $_POST['model'],
-                                $fileName);
+                                $_POST['model']);
     $stmt->execute();
     $stmt->close();
 }
