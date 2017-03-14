@@ -24,10 +24,10 @@
                 include $page;
             } else {
                 //404
-                header('Location: admin.php?p=home');
+                header('Location: index.php?p=home');
             }
         } else {
-            header('Location: admin.php?p=home');
+            header('Location: index.php?p=home');
         }
     ?>
 

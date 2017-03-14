@@ -1,6 +1,6 @@
 <?php
 if ($_POST) {
-    $target_dir = "img/";
+    $target_dir = "./img/";
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
     $uploadOk = 1;
     $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
@@ -43,15 +43,17 @@ if ($_POST) {
             echo "Sorry, there was an error uploading your file.";
         }
     }
+    $conn->query("INSERT INTO pictures (picture_name) VALUES ($fileName)");
+
     $stmt = $conn->prepare("INSERT INTO produkter
                           (product_name, product_details, product_price, fk_categorie_id, fk_model_id, fk_picture_id)
-                          VALUES (?, ?, ?, ?, ?, ?)");
+                          VALUES (?, ?, ?, ?, ?, ?(SELECT MAX(picture_id) FROM pictures))");
     $stmt->bind_param('ssdiis', $_POST['product_name'],
-        $_POST['product_details'],
-        $_POST['product_price'],
-        $_POST['categories'],
-        $_POST['model'],
-        $fileName);
+                                $_POST['product_details'],
+                                $_POST['product_price'],
+                                $_POST['categories'],
+                                $_POST['model'],
+                                $fileName);
     $stmt->execute();
     $stmt->close();
 }
@@ -65,11 +67,11 @@ if ($_POST) {
     <div class="form-group">
         <label class="col-md-4 control-label" for="Kategori">Kategori</label>
         <div class="col-md-4">
-            <select id="Kategori" name="kategori" class="form-control">
+            <select id="Kategori" name="categories" class="form-control">
                 <?php
                 $result = $conn->query("SELECT categorie_id, categorie_name FROM categories");
                 while ($row = $result->fetch_assoc()) {
-                    echo '<option value="'.$row['id'].'">'.$row['navn'].'</option>'.PHP_EOL;
+                    echo '<option value="'.$row['categorie_id'].'">'.$row['categorie_name'].'</option>'.PHP_EOL;
                 }
                 ?>
             </select>
@@ -82,9 +84,9 @@ if ($_POST) {
         <div class="col-md-4">
             <select id="model" name="model" class="form-control">
                 <?php
-                $result = $conn->query("SELECT model_id, model_name FROM model");
+                $result = $conn->query("SELECT id, model_name FROM model");
                 while ($row = $result->fetch_assoc()) {
-                    echo '<option value="'.$row['id'].'">'.$row['navn'].'</option>'.PHP_EOL;
+                    echo '<option value="'.$row['id'].'">'.$row['model_name'].'</option>'.PHP_EOL;
                 }
                 ?>
             </select>
