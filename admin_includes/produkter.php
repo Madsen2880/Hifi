@@ -32,3 +32,15 @@
         </tbody>
     </table>
 </div>
+
+<script>
+    function confirmDelete(msg, id) {
+        var r=confirm(msg);
+        if (r) {
+            //write redirection code
+            window.location = "admin.php?p=sletprodukt&id=" + id;
+        } else {
+            //do nothing
+        }
+    }
+</script>

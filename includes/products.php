@@ -3,7 +3,7 @@
 		$id = $_GET['id'];
 	} else {
 		//404
-		header('Location: admin.php?p=home');
+		header('Location: index.php?p=home');
 	}
 ?>
 
@@ -40,7 +40,7 @@
 								echo '</p>
 									<var><abbr title="DKK">Pris:</abbr> '.$row['product_price'].' kr</var>
 								</figcaption>
-									<img src="prod_image/'.$row['picture_name'].'">
+									<img src="/prod_image/'.$row['picture_name'].'">
 								</a>
 							</figure>
 						</section>';
