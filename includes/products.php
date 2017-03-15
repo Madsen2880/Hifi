@@ -40,7 +40,7 @@
 								echo '</p>
 									<var><abbr title="DKK">Pris:</abbr> '.$row['product_price'].' kr</var>
 								</figcaption>
-									<img src="/prod_image/'.$row['picture_name'].'">
+									<img src="prod_image/'.$row['picture_name'].'">
 								</a>
 							</figure>
 						</section>';
