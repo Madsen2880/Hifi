@@ -95,4 +95,6 @@
     <footer>
         <p>© Hi-fi Netbutikken
         </p>
+
+        <a href="admin.php?p=home" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>Admin panel</a>
     </footer>

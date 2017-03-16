@@ -9,14 +9,14 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     header('Location: admin.php?p=produkter');
 }
 $stmt = $conn->prepare("SELECT id,
-															 navn,
-															 beskrivelse,
-															 pris,
-															 billede,
-															 fkKategoriId,
-															 fkModelId
-												FROM produkter
-												WHERE id = ?");
+                         navn,
+                         beskrivelse,
+                         pris,
+                         billede,
+                         fkKategoriId,
+                         fkModelId
+                            FROM produkter
+                            WHERE id = ?");
 $stmt->bind_param('i', $prodId);
 $stmt->execute();
 $stmt->bind_result($id, $navn, $beskrivelse, $pris, $billede, $fkKategoriId, $fkModelId);
@@ -69,8 +69,7 @@ if ($_POST) {
         }
     }
     $stmt = $conn->prepare("UPDATE produkter
-													SET navn = ?, beskrivelse = ?, pris = ?, fkKategoriId = ?, fkModelId = ?, billede = ?
-													WHERE id = $prodId");
+                            SET product_name = ?, product_details = ?, product_price = ?, fk_categorie_id = ?, fk_model_id = ? WHERE id = $prodId");
     $stmt->bind_param('ssdiis', $_POST['produktNavn'],
         $_POST['produktBeskrivelse'],
         $_POST['produktPris'],
@@ -92,11 +91,11 @@ if ($_POST) {
         <div class="col-md-4">
             <select id="Kategori" name="kategori" class="form-control">
                 <?php
-                $result = $conn->query("SELECT id, navn FROM kategori");
+                $result = $conn->query("SELECT categorie_id, categorie_name FROM categories");
                 while ($row = $result->fetch_assoc()) {
-                    echo '<option value="'.$row['id'].'"';
+                    echo '<option value="'.$row['categorie_id'].'"';
                     echo $row['id'] == $fkKategoriId ? ' selected="true"' : '';
-                    echo '>'.$row['navn'].'</option>'.PHP_EOL;
+                    echo '>'.$row['categorie_name'].'</option>'.PHP_EOL;
                 }
                 ?>
             </select>

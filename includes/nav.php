@@ -39,6 +39,7 @@
                 ?>
 
                     <li><a href="index.php?p=contact">Kontakt</a></li>
+
             </nav>
         </div>
     </div>

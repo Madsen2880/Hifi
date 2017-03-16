@@ -24,7 +24,10 @@
 						 <td>'.$row['model_name'].'</td>
 						 <td>'.$row['product_name'].'</td>
 						 <td>'.$row['product_price'].'</td>
-						 <td><a href="/admin.php?p=redigerprodukt&id='.$row['product_id'].'"><i class="glyphicon glyphicon-pencil"></i></a></td>
+						 <td>
+						 <a href="/admin.php?p=redigerprodukt&id='.$row['product_id'].'"><i class="glyphicon glyphicon-pencil"></i></a>
+						 <a href="javascript:void();" onclick="confirmDelete(\'Er du sikker på, du vil slette '.$row['product_name'].'?\', '.$row['product_id'].')"><i class="glyphicon glyphicon-trash"></i></a>
+						 </td>
 						</tr>';
         }
         $result->free();
