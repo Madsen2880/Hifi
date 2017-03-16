@@ -1,5 +1,12 @@
 <?php
 require_once 'mysqlconfig.php';
+
+session_start();
+if(!$_SESSION['isLoggedIn'] === true) {
+    header('location: login.php');
+    die;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -34,9 +41,8 @@ require_once 'mysqlconfig.php';
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="admin.php?p=produkter">Produkter</a></li>
-                <li><a href="#">Settings</a></li>
-                <li><a href="#">Profile</a></li>
-                <li><a href="#">Help</a></li>
+                <li><a href="index.php">Log Ud</a></li>
+
             </ul>
             <form class="navbar-form navbar-right">
                 <input type="text" class="form-control" placeholder="Search...">

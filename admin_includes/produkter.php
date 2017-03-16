@@ -20,7 +20,7 @@
                                     ON fk_model_id = id");
         while($row = $result->fetch_assoc()) {
             echo '<tr>
-			       <td>'.$row['categorie_name'].'</td>
+			             <td>'.$row['categorie_name'].'</td>
 						 <td>'.$row['model_name'].'</td>
 						 <td>'.$row['product_name'].'</td>
 						 <td>'.$row['product_price'].'</td>

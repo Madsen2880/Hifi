@@ -16,7 +16,7 @@ $stmt = $conn->prepare("SELECT product_id,
                          fk_categorie_id,
                          fk_model_id
                             FROM produkter
-                            WHERE id = ?");
+                            WHERE id = $prodId");
 $stmt->bind_param('i', $prodId);
 $stmt->execute();
 $stmt->bind_result($id, $navn, $beskrivelse, $pris, $billede, $fkKategoriId, $fkModelId);
@@ -108,7 +108,7 @@ if ($_POST) {
         <div class="col-md-4">
             <select id="model" name="model" class="form-control">
                 <?php
-                $result = $conn->query("SELECT id, navn FROM model");
+                $result = $conn->query("SELECT id, model_name FROM model");
                 while ($row = $result->fetch_assoc()) {
                     echo '<option value="'.$row['id'].'"';
                     echo $row['id'] == $fkModelId ? ' selected="true"' : '';
