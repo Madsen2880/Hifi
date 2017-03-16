@@ -6,7 +6,7 @@ if (isset($_GET['id']) && !empty($_GET['id']) && is_numeric($_GET['id'])) {
     header('Location: admin.php?p=produkter');
 }
 
-$sql = "DELETE FROM produkter WHERE produkt_id =  ";
+$sql = "DELETE FROM produkter WHERE product_id = $delId ";
 
 if ($conn->query($sql) === TRUE) {
     echo "Record deleted successfully";

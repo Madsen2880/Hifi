@@ -8,13 +8,13 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     // 404
     header('Location: admin.php?p=produkter');
 }
-$stmt = $conn->prepare("SELECT id,
-                         navn,
-                         beskrivelse,
-                         pris,
-                         billede,
-                         fkKategoriId,
-                         fkModelId
+$stmt = $conn->prepare("SELECT product_id,
+                         product_name,
+                         product_details,
+                         product_price,
+                         fk_picture_id,
+                         fk_categorie_id,
+                         fk_model_id
                             FROM produkter
                             WHERE id = ?");
 $stmt->bind_param('i', $prodId);
